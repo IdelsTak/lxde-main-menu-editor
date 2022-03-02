@@ -85,7 +85,7 @@
       <VBox styleClass="main-content-box" VBox.vgrow="ALWAYS">
          <children>
             <Label styleClass="main-label" text="Configure main menu" />
-            <HBox maxWidth="1.7976931348623157E308" styleClass="content-box">
+            <HBox maxWidth="1.7976931348623157E308" styleClass="content-box" VBox.vgrow="ALWAYS">
                <children>
                   <VBox>
                      <children>
