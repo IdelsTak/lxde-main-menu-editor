@@ -28,6 +28,11 @@
             <artifactId>MenuEditor-Model</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>17.0.2</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
