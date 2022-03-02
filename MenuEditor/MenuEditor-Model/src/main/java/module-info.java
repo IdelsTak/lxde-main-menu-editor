@@ -22,4 +22,6 @@
  * THE SOFTWARE.
  */
 
-module menu.editor.model {}
+module menu.editor.model {
+  exports com.github.idelstak.menueditor.model;
+}
