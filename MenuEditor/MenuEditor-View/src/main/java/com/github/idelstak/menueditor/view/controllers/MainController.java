@@ -25,8 +25,11 @@
 package com.github.idelstak.menueditor.view.controllers;
 
 import com.github.idelstak.menueditor.model.DesktopEntryFiles;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import javafx.fxml.FXML;
 
@@ -42,6 +45,15 @@ public class MainController {
     //        new DesktopEntryFiles("/usr/local/share/applications/");
 
     StreamSupport.stream(entryFiles.spliterator(), false)
-        .forEach(f -> LOG.log(Level.INFO, "Desktop file: {0}", f));
+        .forEachOrdered(
+            f -> {
+              LOG.log(Level.INFO, "Desktop file: {0}", f);
+
+              try (Stream<String> lines = Files.lines(f.toPath())) {
+                lines.forEachOrdered(System.out::println);
+              } catch (IOException ex) {
+                LOG.log(Level.SEVERE, null, ex);
+              }
+            });
   }
 }
