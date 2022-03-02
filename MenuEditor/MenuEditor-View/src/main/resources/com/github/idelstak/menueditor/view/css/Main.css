@@ -26,15 +26,19 @@ THE SOFTWARE.
     Author     : Hiram K.
 */
 
+.main-label .text {
+    -fx-font-weight: bold
+}
+
 .main-content-box {
     -fx-padding: 1em 1em 1em 1em
 }
 
 .main-content-box,
 .content-box {
-    -fx-spacing: 1em
+    -fx-spacing: 2em
 }
 
-.main-label .text {
-    -fx-font-weight: bold
+.list-box {
+    -fx-spacing: 0.4em
 }
