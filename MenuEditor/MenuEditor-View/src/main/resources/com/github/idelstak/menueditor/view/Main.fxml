@@ -90,7 +90,7 @@
                         <VBox styleClass="list-box">
                             <children>
                                 <Label text="Categories" />
-                                <ListView maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+                                <ListView fx:id="categoriesList" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
                             </children>
                         </VBox>
                         <VBox maxHeight="1.7976931348623157E308" styleClass="list-box" HBox.hgrow="ALWAYS">
