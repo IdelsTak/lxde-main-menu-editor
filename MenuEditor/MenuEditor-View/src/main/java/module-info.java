@@ -22,4 +22,7 @@
  * THE SOFTWARE.
  */
 
-module menu.editor.view {}
+module menu.editor.view {
+  requires javafx.graphics;
+  requires javafx.fxml;
+}
