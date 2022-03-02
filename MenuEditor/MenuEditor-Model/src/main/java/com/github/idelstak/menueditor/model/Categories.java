@@ -62,7 +62,7 @@ public class Categories implements Iterable<Category> {
                 LOG.log(Level.SEVERE, null, ex);
               }
 
-              return null;
+              return Stream.empty();
             })
         .takeWhile(s -> s != null && !s.isBlank())
         .collect(Collectors.mapping(Category::new, Collectors.toSet()))
