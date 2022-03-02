@@ -24,6 +24,8 @@
 
 package com.github.idelstak.menueditor.model;
 
+import java.util.Objects;
+
 /** @author Hiram K. */
 public class DesktopEntry {
   private final Category category;
@@ -36,7 +38,107 @@ public class DesktopEntry {
   private boolean runInTerminal;
 
   public DesktopEntry(Category category, String name) {
+    this(category, name, null, null, null, null, false, false);
+  }
+
+  public DesktopEntry(
+      Category category,
+      String name,
+      String comment,
+      String command,
+      String workingDir,
+      String icon,
+      boolean startupNotify,
+      boolean runInTerminal) {
     this.category = category;
     this.name = name;
+    this.comment = comment;
+    this.command = command;
+    this.workingDir = workingDir;
+    this.icon = icon;
+    this.startupNotify = startupNotify;
+    this.runInTerminal = runInTerminal;
+  }
+
+  public Category getCategory() {
+    return category;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getComment() {
+    return comment;
+  }
+
+  public String getCommand() {
+    return command;
+  }
+
+  public String getWorkingDir() {
+    return workingDir;
+  }
+
+  public String getIcon() {
+    return icon;
+  }
+
+  public boolean isStartupNotify() {
+    return startupNotify;
+  }
+
+  public boolean isRunInTerminal() {
+    return runInTerminal;
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 3;
+    hash = 71 * hash + Objects.hashCode(this.category);
+    hash = 71 * hash + Objects.hashCode(this.name);
+    hash = 71 * hash + Objects.hashCode(this.comment);
+    hash = 71 * hash + Objects.hashCode(this.command);
+    hash = 71 * hash + Objects.hashCode(this.workingDir);
+    hash = 71 * hash + Objects.hashCode(this.icon);
+    hash = 71 * hash + (this.startupNotify ? 1 : 0);
+    hash = 71 * hash + (this.runInTerminal ? 1 : 0);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final DesktopEntry other = (DesktopEntry) obj;
+    if (this.startupNotify != other.startupNotify) {
+      return false;
+    }
+    if (this.runInTerminal != other.runInTerminal) {
+      return false;
+    }
+    if (!Objects.equals(this.name, other.name)) {
+      return false;
+    }
+    if (!Objects.equals(this.comment, other.comment)) {
+      return false;
+    }
+    if (!Objects.equals(this.command, other.command)) {
+      return false;
+    }
+    if (!Objects.equals(this.workingDir, other.workingDir)) {
+      return false;
+    }
+    if (!Objects.equals(this.icon, other.icon)) {
+      return false;
+    }
+    return Objects.equals(this.category, other.category);
   }
 }
