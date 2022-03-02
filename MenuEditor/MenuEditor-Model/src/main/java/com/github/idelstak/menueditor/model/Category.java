@@ -24,11 +24,12 @@
 
 package com.github.idelstak.menueditor.model;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Objects;
 
 /** @author Hiram K. */
-public class Category implements Iterable<DesktopEntry> {
+public class Category implements Iterable<DesktopEntry>, Comparable<Category> {
   private final String name;
   private String icon;
 
@@ -52,6 +53,11 @@ public class Category implements Iterable<DesktopEntry> {
   @Override
   public Iterator<DesktopEntry> iterator() {
     throw new UnsupportedOperationException("Not supported yet.");
+  }
+
+  @Override
+  public int compareTo(Category otherCategory) {
+    return Comparator.comparing(Category::getName).compare(this, otherCategory);
   }
 
   @Override
