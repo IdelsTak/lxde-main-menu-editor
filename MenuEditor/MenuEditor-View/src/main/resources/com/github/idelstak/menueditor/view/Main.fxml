@@ -87,13 +87,13 @@
             <Label styleClass="main-label" text="Configure main menu" />
             <HBox maxWidth="1.7976931348623157E308" styleClass="content-box" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox>
+                  <VBox styleClass="list-box">
                      <children>
                         <Label text="Categories" />
                         <ListView maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                  <VBox layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" styleClass="list-box" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="Menu Items" />
                         <ListView maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
