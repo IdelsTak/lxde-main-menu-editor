@@ -39,16 +39,16 @@ import javafx.scene.control.ListView;
 /** @author Hiram K. */
 public class MainController {
   private static final Logger LOG = Logger.getLogger(MainController.class.getName());
+  private static final String USER_HOME = System.getProperty("user.home");
+  private static final String USER_APPS_DIR = USER_HOME + "/.local/share/applications";
+  private static final String ROOT_APPS_DIR = "/usr/share/applications/";
 
   @FXML private ListView<Category> categoriesList;
 
   @FXML
   void initialize() {
-
-    var rootCategories = new Categories(new DesktopEntryFiles("/usr/share/applications/"));
-    var userCategories =
-        new Categories(
-            new DesktopEntryFiles(System.getProperty("user.home") + "/.local/share/applications"));
+    var rootCategories = new Categories(new DesktopEntryFiles(ROOT_APPS_DIR));
+    var userCategories = new Categories(new DesktopEntryFiles(USER_APPS_DIR));
 
     categoriesList.setCellFactory(
         cllbck -> {
