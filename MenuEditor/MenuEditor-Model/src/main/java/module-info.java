@@ -23,5 +23,6 @@
  */
 
 module menu.editor.model {
+  requires java.logging;
   exports com.github.idelstak.menueditor.model;
 }
