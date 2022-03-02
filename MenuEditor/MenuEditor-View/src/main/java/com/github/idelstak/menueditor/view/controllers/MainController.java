@@ -25,26 +25,47 @@
 package com.github.idelstak.menueditor.view.controllers;
 
 import com.github.idelstak.menueditor.model.Categories;
+import com.github.idelstak.menueditor.model.Category;
 import com.github.idelstak.menueditor.model.DesktopEntryFiles;
-import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 
 /** @author Hiram K. */
 public class MainController {
   private static final Logger LOG = Logger.getLogger(MainController.class.getName());
 
+  @FXML private ListView<Category> categoriesList;
+
   @FXML
   void initialize() {
     var entryFiles =
-//        new DesktopEntryFiles(System.getProperty("user.home") + "/.local/share/applications");
-            new DesktopEntryFiles("/usr/share/applications/");
+        //        new DesktopEntryFiles(System.getProperty("user.home") +
+        // "/.local/share/applications");
+        new DesktopEntryFiles("/usr/share/applications/");
     //        new DesktopEntryFiles("/usr/local/share/applications/");
 
     var categories = new Categories(entryFiles);
 
-    StreamSupport.stream(categories.spliterator(), false)
-        .forEachOrdered(c -> LOG.log(Level.INFO, "Category: {0}", c.getName()));
+    categoriesList.setCellFactory(
+        (param) -> {
+          return new ListCell<>() {
+            @Override
+            protected void updateItem(Category item, boolean empty) {
+              super.updateItem(item, empty);
+              super.setText(empty ? null : item.getName());
+            }
+          };
+        });
+
+    categoriesList.setItems(
+        FXCollections.observableArrayList(
+            StreamSupport.stream(categories.spliterator(), false)
+                .sorted()
+                .collect(Collectors.toList())));
   }
 }
