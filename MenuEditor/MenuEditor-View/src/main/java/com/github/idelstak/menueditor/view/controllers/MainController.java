@@ -24,12 +24,10 @@
 
 package com.github.idelstak.menueditor.view.controllers;
 
+import com.github.idelstak.menueditor.model.Categories;
 import com.github.idelstak.menueditor.model.DesktopEntryFiles;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import javafx.fxml.FXML;
 
@@ -40,20 +38,13 @@ public class MainController {
   @FXML
   void initialize() {
     var entryFiles =
-        new DesktopEntryFiles(System.getProperty("user.home") + "/.local/share/applications");
-    //        new DesktopEntryFiles("/usr/share/applications/");
+//        new DesktopEntryFiles(System.getProperty("user.home") + "/.local/share/applications");
+            new DesktopEntryFiles("/usr/share/applications/");
     //        new DesktopEntryFiles("/usr/local/share/applications/");
 
-    StreamSupport.stream(entryFiles.spliterator(), false)
-        .forEachOrdered(
-            f -> {
-              LOG.log(Level.INFO, "Desktop file: {0}", f);
+    var categories = new Categories(entryFiles);
 
-              try (Stream<String> lines = Files.lines(f.toPath())) {
-                lines.forEachOrdered(System.out::println);
-              } catch (IOException ex) {
-                LOG.log(Level.SEVERE, null, ex);
-              }
-            });
+    StreamSupport.stream(categories.spliterator(), false)
+        .forEachOrdered(c -> LOG.log(Level.INFO, "Category: {0}", c.getName()));
   }
 }
