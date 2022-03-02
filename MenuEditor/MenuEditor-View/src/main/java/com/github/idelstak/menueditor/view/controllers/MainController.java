@@ -29,6 +29,7 @@ import com.github.idelstak.menueditor.model.Category;
 import com.github.idelstak.menueditor.model.DesktopEntryFiles;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -43,16 +44,14 @@ public class MainController {
 
   @FXML
   void initialize() {
-    var entryFiles =
-        //        new DesktopEntryFiles(System.getProperty("user.home") +
-        // "/.local/share/applications");
-        new DesktopEntryFiles("/usr/share/applications/");
-    //        new DesktopEntryFiles("/usr/local/share/applications/");
 
-    var categories = new Categories(entryFiles);
+    var rootCategories = new Categories(new DesktopEntryFiles("/usr/share/applications/"));
+    var userCategories =
+        new Categories(
+            new DesktopEntryFiles(System.getProperty("user.home") + "/.local/share/applications"));
 
     categoriesList.setCellFactory(
-        (param) -> {
+        cllbck -> {
           return new ListCell<>() {
             @Override
             protected void updateItem(Category item, boolean empty) {
@@ -64,7 +63,10 @@ public class MainController {
 
     categoriesList.setItems(
         FXCollections.observableArrayList(
-            StreamSupport.stream(categories.spliterator(), false)
+            Stream.concat(
+                    StreamSupport.stream(rootCategories.spliterator(), false),
+                    StreamSupport.stream(userCategories.spliterator(), false))
+                .distinct()
                 .sorted()
                 .collect(Collectors.toList())));
   }
