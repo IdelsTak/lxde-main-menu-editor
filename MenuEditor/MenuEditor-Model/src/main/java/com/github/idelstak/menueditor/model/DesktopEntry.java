@@ -85,7 +85,7 @@ public class DesktopEntry {
     return this;
   }
 
-  public DesktopEntry runsInTerminal(boolean runInTerminal) {
+  public DesktopEntry runInTerminal(boolean runInTerminal) {
     this.runInTerminal = runInTerminal;
     return this;
   }
