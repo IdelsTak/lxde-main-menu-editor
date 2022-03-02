@@ -24,10 +24,22 @@
 
 package com.github.idelstak.menueditor.view.controllers;
 
+import com.github.idelstak.menueditor.model.DesktopEntryFiles;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.StreamSupport;
 import javafx.fxml.FXML;
 
 /** @author Hiram K. */
 public class MainController {
+  private static final Logger LOG = Logger.getLogger(MainController.class.getName());
+
   @FXML
-  void initialize() {}
+  void initialize() {
+    var entryFiles =
+        new DesktopEntryFiles(System.getProperty("user.home") + "/.local/share/applications");
+
+    StreamSupport.stream(entryFiles.spliterator(), false)
+        .forEach(f -> LOG.log(Level.INFO, "Desktop file: {0}", f));
+  }
 }
