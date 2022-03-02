@@ -25,12 +25,58 @@
 package com.github.idelstak.menueditor.model;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 /** @author Hiram K. */
 public class Category implements Iterable<DesktopEntry> {
+  private final String name;
+  private String icon;
+
+  public Category(String name) {
+    this(name, null);
+  }
+
+  public Category(String name, String icon) {
+    this.name = name;
+    this.icon = icon;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getIcon() {
+    return icon;
+  }
 
   @Override
   public Iterator<DesktopEntry> iterator() {
     throw new UnsupportedOperationException("Not supported yet.");
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 3;
+    hash = 17 * hash + Objects.hashCode(this.name);
+    hash = 17 * hash + Objects.hashCode(this.icon);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Category other = (Category) obj;
+    if (!Objects.equals(this.name, other.name)) {
+      return false;
+    }
+    return Objects.equals(this.icon, other.icon);
   }
 }
