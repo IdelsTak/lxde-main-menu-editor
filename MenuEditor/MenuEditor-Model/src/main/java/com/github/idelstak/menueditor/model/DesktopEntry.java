@@ -41,7 +41,7 @@ public class DesktopEntry {
     this(category, name, null, null, null, null, false, false);
   }
 
-  public DesktopEntry(
+  private DesktopEntry(
       Category category,
       String name,
       String comment,
@@ -58,6 +58,36 @@ public class DesktopEntry {
     this.icon = icon;
     this.startupNotify = startupNotify;
     this.runInTerminal = runInTerminal;
+  }
+
+  public DesktopEntry withComment(String comment) {
+    this.comment = comment;
+    return this;
+  }
+
+  public DesktopEntry withCommand(String command) {
+    this.command = command;
+    return this;
+  }
+
+  public DesktopEntry withWorkingDir(String workingDir) {
+    this.workingDir = workingDir;
+    return this;
+  }
+
+  public DesktopEntry withIcon(String icon) {
+    this.icon = icon;
+    return this;
+  }
+
+  public DesktopEntry useStartupNotification(boolean startupNotify) {
+    this.startupNotify = startupNotify;
+    return this;
+  }
+
+  public DesktopEntry runsInTerminal(boolean runInTerminal) {
+    this.runInTerminal = runInTerminal;
+    return this;
   }
 
   public Category getCategory() {
