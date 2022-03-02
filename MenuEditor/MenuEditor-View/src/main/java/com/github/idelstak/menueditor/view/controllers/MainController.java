@@ -38,6 +38,8 @@ public class MainController {
   void initialize() {
     var entryFiles =
         new DesktopEntryFiles(System.getProperty("user.home") + "/.local/share/applications");
+    //        new DesktopEntryFiles("/usr/share/applications/");
+    //        new DesktopEntryFiles("/usr/local/share/applications/");
 
     StreamSupport.stream(entryFiles.spliterator(), false)
         .forEach(f -> LOG.log(Level.INFO, "Desktop file: {0}", f));
