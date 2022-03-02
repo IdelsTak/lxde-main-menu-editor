@@ -23,6 +23,7 @@
  */
 
 module menu.editor.view {
+  requires menu.editor.model;
   requires javafx.graphics;
   requires javafx.fxml;
 }
