@@ -24,10 +24,7 @@
 
 package com.github.idelstak.menueditor.view;
 
-import java.io.IOException;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -39,12 +36,8 @@ public class MenuEditor extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    stage.setScene(this.createScene());
+    stage.setScene(new Scene(new FxmlLoad().apply("Main.fxml")));
     stage.setTitle("Menu Editor");
     stage.show();
-  }
-
-  private Scene createScene() throws IOException {
-    return new Scene(((Parent) FXMLLoader.load(super.getClass().getResource("Main.fxml"))));
   }
 }
