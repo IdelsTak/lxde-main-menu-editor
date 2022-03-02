@@ -24,8 +24,14 @@
 
 package com.github.idelstak.menueditor.model;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.stream.Collectors;
+
 /** @author Hiram K. */
-public class DesktopEntryFiles {
+public class DesktopEntryFiles implements Iterable<File> {
   private final String parentDir;
 
   public DesktopEntryFiles(String parentDir) {
@@ -34,5 +40,21 @@ public class DesktopEntryFiles {
 
   public String getParentDir() {
     return parentDir;
+  }
+
+  @Override
+  public Iterator<File> iterator() {
+    var parentDirectory = new File(parentDir);
+    Iterator<File> it = Collections.emptyIterator();
+
+    if (parentDirectory.exists()) {
+      it =
+          Arrays.stream(
+                  parentDirectory.listFiles((dir, name) -> name.toLowerCase().endsWith(".desktop")))
+              .collect(Collectors.toList())
+              .iterator();
+    }
+
+    return it;
   }
 }
