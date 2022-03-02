@@ -30,3 +30,4 @@ nb-configuration.xml
 hs_err_pid*
 replay_pid*
 
+/MenuEditor/MenuEditor-View/target/
