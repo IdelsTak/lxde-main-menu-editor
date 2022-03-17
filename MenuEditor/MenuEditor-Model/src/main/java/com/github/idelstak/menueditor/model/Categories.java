@@ -65,7 +65,7 @@ public class Categories implements Iterable<Category> {
               return Stream.empty();
             })
         .takeWhile(s -> s != null && !s.isBlank())
-        .collect(Collectors.mapping(Category::new, Collectors.toSet()))
+        .collect(Collectors.mapping(Category::new, Collectors.toUnmodifiableSet()))
         .iterator();
   }
 }

@@ -51,7 +51,7 @@ public class DesktopEntryFiles implements Iterable<File> {
       it =
           Arrays.stream(
                   parentDirectory.listFiles((dir, name) -> name.toLowerCase().endsWith(".desktop")))
-              .collect(Collectors.toList())
+              .collect(Collectors.toUnmodifiableList())
               .iterator();
     }
 
